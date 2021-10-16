@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>GRUPO 6- CG</title>
+  </head>
+  <body>
+    <h4>Grupo 6</h4>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.js"></script>
+    <script>
+      var scene = new THREE.Scene();
+
+      var camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      camera.position.set(0, 0, 6);
+
+      //NAVE DO HERÓI
+      var pyramidgeoHero = new THREE.CylinderGeometry(0, 1, 1, 4, false);
+      var pyramidmatHero = new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0x0000cd,
+      });
+      var pyramidHero = new THREE.Mesh(pyramidgeoHero, pyramidmatHero);
+      pyramidHero.position.set(0, -1, 0);
+      pyramidHero.rotation.y = Math.PI / 4;
+      scene.add(pyramidHero);
+
+      var pyramidgeoHero1 = new THREE.CylinderGeometry(0, 1, 2, 4, false);
+      var pyramidHero1 = new THREE.Mesh(pyramidgeoHero1, pyramidmatHero);
+      pyramidHero1.position.set(0, -1, 0);
+      pyramidHero1.rotation.y = Math.PI / 4;
+      scene.add(pyramidHero1);
+
+      //NAVE DO VILÃO
+      var pyramidgeoVillain = new THREE.CylinderGeometry(0, 1, 2, 4, false);
+      var pyramidmatVillain = new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xff0000,
+      });
+      var pyramidVillain = new THREE.Mesh(pyramidgeoVillain, pyramidmatVillain);
+      pyramidVillain.position.set(0, 2, 0);
+      pyramidVillain.rotation.y = Math.PI / 4;
+      pyramidVillain.rotation.x = 180;
+      scene.add(pyramidVillain);
+
+      function render() {
+        requestAnimationFrame(render);
+        renderer.render(scene, camera);
+      }
+
+      window.addEventListener("keydown", (e) => {
+        switch (e.keyCode) {
+          case 52:
+            pyramidmatHero.wireframe = !pyramidmatHero.wireframe;
+            pyramidmatVillain.wireframe = !pyramidmatVillain.wireframe;
+            break;
+          case 39:
+            pyramidHero.position.x += 0.2;
+            pyramidHero1.position.x += 0.2;
+            break;
+          case 37:
+            pyramidHero.position.x -= 0.1;
+            pyramidHero1.position.x -= 0.1;
+            break;
+        }
+      });
+      render();
+    </script>
+  </body>
+</html>
