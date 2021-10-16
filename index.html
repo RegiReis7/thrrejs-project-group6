@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.js"></script>
     <script>
       var scene = new THREE.Scene();
+      var min = -1
+      var max = 1
 
       var camera = new THREE.PerspectiveCamera(
         75,
@@ -54,6 +56,10 @@
       pyramidVillain.rotation.y = Math.PI / 4;
       pyramidVillain.rotation.x = 180;
       scene.add(pyramidVillain);
+
+      window.setInterval(() =>{
+        pyramidVillain.position.x += Math.random() * (max - min) + min
+      }, 500)
 
       function render() {
         requestAnimationFrame(render);
