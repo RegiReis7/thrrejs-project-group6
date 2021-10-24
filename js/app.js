@@ -5,7 +5,7 @@ var max = 1;
 function createScene() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(
-    75,
+    85,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
@@ -32,14 +32,14 @@ function heroShip() {
     color: 0x0000cd,
   });
   var pyramidHero = new THREE.Mesh(pyramidgeoHero, pyramidmatHero);
-  pyramidHero.position.set(0, -1, 0);
+  pyramidHero.position.set(0, -2, 0);
   pyramidHero.rotation.y = Math.PI / 4;
 
   scene.add(pyramidHero);
 
   var pyramidgeoHero1 = new THREE.CylinderGeometry(0, 1, 2, 4, false);
   var pyramidHero1 = new THREE.Mesh(pyramidgeoHero1, pyramidmatHero);
-  pyramidHero1.position.set(0, -1, 0);
+  pyramidHero1.position.set(0, -2, 0);
   pyramidHero1.rotation.y = Math.PI / 4;
   scene.add(pyramidHero1);
 
@@ -69,7 +69,7 @@ function villainShip() {
     color: 0xff0000,
   });
   var pyramidVillain = new THREE.Mesh(pyramidgeoVillain, pyramidmatVillain);
-  pyramidVillain.position.set(0, 2, 0);
+  pyramidVillain.position.set(0, 3, 0);
   pyramidVillain.rotation.y = Math.PI / 4;
   pyramidVillain.rotation.x = 180;
   scene.add(pyramidVillain);
