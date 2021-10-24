@@ -1,6 +1,6 @@
 var scene, camera, renderer, pyramidmatVillain;
-var min = -1;
-var max = 1;
+var min = -0.5;
+var max = 0.5;
 
 function createScene() {
   scene = new THREE.Scene();
@@ -50,12 +50,18 @@ function heroShip() {
         pyramidmatVillain.wireframe = !pyramidmatVillain.wireframe;
         break;
       case 39:
-        pyramidHero.position.x += 0.2;
-        pyramidHero1.position.x += 0.2;
+        if (pyramidHero.position.x < 2) {
+          pyramidHero.position.x += 0.2;
+          pyramidHero1.position.x += 0.2;
+          //camera.position.x += 0.2;
+        }
         break;
       case 37:
-        pyramidHero.position.x -= 0.2;
-        pyramidHero1.position.x -= 0.2;
+        if (pyramidHero.position.x > -2) {
+          pyramidHero.position.x -= 0.2;
+          pyramidHero1.position.x -= 0.2;
+          //camera.position.x -= 0.2;
+        }
         break;
     }
   });
@@ -75,7 +81,13 @@ function villainShip() {
   scene.add(pyramidVillain);
 
   window.setInterval(() => {
-    pyramidVillain.position.x += Math.random() * (max - min) + min;
+    if (pyramidVillain.position.x >= 4) {
+      pyramidVillain.position.x -= 0.2;
+    } else if (pyramidVillain.position.x <= -4) {
+      pyramidVillain.position.x += 0.2;
+    } else {
+      pyramidVillain.position.x += Math.random() * (max - min) + min;
+    }
   }, 300);
 }
 
